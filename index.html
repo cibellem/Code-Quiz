@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+
+    <title>Code Quiz</title>
+
+</head>
+
+<body>
+    <div class="container ">
+        <div class="row">
+            <div class="col-6">
+
+                <div id=divScore></div>
+                <h1 id="h1Score">Score = 0</h1>
+            </div>
+
+            <div class="col-6">
+
+                <div id="timeStart"></div>
+                <h1 class=text-right id="main">Timer = 0</h1>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <div class=" text-center container bg-light " id="initialDiv">
+
+        <div class="row">
+            <div class="col ">
+                <h1 class=" text-center">Code Quiz!</h1>
+                <h2 class=" text-center">It's time to test your knowledge. <br>
+                    You will have 60 seconds to answer the question. <br> Each correct answer gives you
+                    5 points. <br>
+                    Click start to initiate it.</h2> <br>
+                <button class="btn btn-lg btn-warning" id="StartBttn">Start</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-light " id="magicalDiv">
+
+        <div class="row">
+            <div class="col-12 ">
+                <h2 class=" text-center" id="question1">Question</h2>
+                <h2 class=" text-center" id="question2">Question</h2>
+                <h2 class=" text-center" id="question3">Question</h2>
+                <h2 class=" text-center" id="question4">Question</h2>
+                <h2 class=" text-center" id="question5">Question</h2>
+                <h2 class=" text-center" id="finalQuestion">Question</h2>
+
+                <form id="nameForm" method="POST"></form>
+                <input id="finalInput" type="text"> <br>
+                <input class="text-center" id="submitButton" type="button" value="Submit">
+                <input id="newGame" type="button" value="Start Again">
+            </div>
+
+
+
+            <br>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/questions.js"></script>
+
+
+</body>
+
+</html>
