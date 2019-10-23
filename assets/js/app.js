@@ -14,12 +14,14 @@ var finalDiv = document.getElementById("finalQuestion");
 var inputFinal = document.getElementById("finalInput");
 var submitBttn = document.getElementById("submitButton");
 var buttonStart = document.getElementById("StartBttn");
-var contentHide = document.getElementById("initialDiv");
-var hideDiv = document.getElementById("magicalDiv");
-var newGame = document.getElementById("newGame");
-var players = [];
+var divInitial = document.getElementById("initialDiv");
+var $magicalDiv = document.getElementById("magicalDiv");
+var newGameBttn = document.getElementById("newGame");
+var countdown = " "
 
-//Creating elements that I will use for each question
+var correctAnswers = ["alerts", "parentheses", "Client-side", "2names", "Functions"]
+
+//Creating elements that I will use for each question . I am creating  a paragraph for each question and buttons
 
 var question1 = document.createElement("p");
 var question2 = document.createElement("p");
@@ -31,52 +33,60 @@ var bttn2 = document.createElement('button');
 var bttn3 = document.createElement('button');
 var bttn4 = document.createElement('button');
 
-bttn1.setAttribute("class", "btn btn-outline-warning")
-bttn2.setAttribute("class", "btn btn-outline-warning")
-bttn3.setAttribute("class", "btn btn-outline-warning")
-bttn4.setAttribute("class", "btn btn-outline-warning")
+//setting atributes to my buttons
+bttn1.setAttribute("class", " btn-warning")
+bttn2.setAttribute("class", " btn-warning")
+bttn3.setAttribute("class", "btn-warning")
+bttn4.setAttribute("class", "btn-warning")
+question1.setAttribute("class", "mt-4")
+question2.setAttribute("class", "mt-4")
+question3.setAttribute("class", "mt-4")
+question4.setAttribute("class", "mt-4")
+question5.setAttribute("class", "mt-4")
+inputFinal.setAttribute("class", "mt-4")
 
 
+setUpGAme()
 
-//Event listeners
 buttonStart.addEventListener("click", startQuiz);
-// newGame.addEventListener("click", newStart);
-submitBttn.addEventListener("click", submit);
+newGameBttn.addEventListener("click", setUpGAme);
+// submitBttn.addEventListener("click", submit);
 
 
-hideDiv.style.visibility = "hidden";
+function setUpGAme() {
+    timer.style.display = "block"
+    finalDiv.style.display = "none"
+    $magicalDiv.style.display = "none";
+    divInitial.style.display = "block"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = 'none'
+    newGameBttn.style.display = "none"
+}
 
-
-// //when the user clicks on START button the quiz starts 
-//Created a function for each question 
 
 function startQuiz() {
-    //when the function it's invoked the container will hide  and countdown will start
-    contentHide.style.display = "none"
-    inputFinal.style.visibility = "hidden"
-    submitBttn.style.visibility = 'hidden'
-    newGame.style.visibility = "hidden"
-
-
-    //my 1st question is displayed
+    // score = 0;
+    // startTime = 60;
     firstQuestion()
+    divInitial.style.display = "none"
+    finalDiv.style.display = "none"
+    inputFinal.style.display = "none"
 
-    var countdown = setInterval(function () {
+    countdown = setInterval(function () {
         startTime--;
         timer.innerHTML = startTime;
 
-
         if (startTime === 0) {
             clearInterval(countdown);
-        }
-
-
-        if (startTime === 0) {
-
             timer.textContent = "Time is out!";
-
         }
 
+        if (questions[i].length === -1) {
+            clearInterval(countdown);
+            timer.textContent = "Time is out!";
+        }
+
+        // I want to creat another if to to stop the time. When there are no more questions to be asked timer stop,
     }, 1000);
 
 }
@@ -84,28 +94,27 @@ function startQuiz() {
 
 function firstQuestion() {
 
-    hideDiv.style.visibility = "visible"
+    $magicalDiv.style.display = "block"
+    questionDiv.style.display = "block"
     questionDiv2.style.display = "none"
     questionDiv3.style.display = "none"
     questionDiv4.style.display = "none"
     questionDiv5.style.display = "none"
     finalDiv.style.display = "none"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = "none"
 
 
-    // bttn1.setAttribute("class", "btn-light")    
 
     for (i = 0; i < questions[0].choices.length; i++) {
 
 
+        //change the html content 
         question1.textContent = questions[0].title;
-
-
-        //get elements inside of the array
         bttn1.textContent = questions[0].choices[0]
         bttn2.innerHTML = questions[0].choices[1]
         bttn3.innerHTML = questions[0].choices[2]
         bttn4.innerHTML = questions[0].choices[3]
-
 
         //Appending the question and buttons 
 
@@ -115,32 +124,19 @@ function firstQuestion() {
         questionDiv.appendChild(bttn3);
         questionDiv.appendChild(bttn4);
 
+
     }
 
-
-    bttn1.addEventListener("click", function () {
-        secondQuestion()
-    })
-    bttn2.addEventListener("click", function () {
-        secondQuestion()
-    })
-    bttn3.addEventListener("click", function () {
-        secondQuestion()
-        // ++score
-        // h1score.innerHTML = "Score = " + score;
-        // console.log(score)
-
-    })
-    bttn4.addEventListener("click", function () {
-        secondQuestion()
-    })
-
 }
+
 
 function secondQuestion() {
 
     questionDiv2.style.display = "block"
     questionDiv.style.display = "none"
+    finalDiv.style.display = "none"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = "none"
 
 
     for (i = 0; i < questions[1].choices.length; i++) {
@@ -164,36 +160,20 @@ function secondQuestion() {
 
     }
 
-    bttn1.addEventListener("click", function () {
-
-        thirdQuestion()
-    })
-    bttn2.addEventListener("click", function () {
-        thirdQuestion()
-    })
-    bttn3.addEventListener("click", function () {
-        thirdQuestion()
-        // ++score
-        // h1score.innerHTML = "Score = " + score;
-        // console.log(score)
-
-    })
-    bttn4.addEventListener("click", function () {
-        thirdQuestion()
-    })
-
-
 }
 
 function thirdQuestion() {
 
     questionDiv2.style.display = "none"
     questionDiv3.style.display = "block"
+    finalDiv.style.display = "none"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = "none"
 
 
     for (i = 0; i < questions[2].choices.length; i++) {
 
-        // debugger
+
         question3.textContent = questions[2].title;
 
         //get elements inside of the array
@@ -210,36 +190,19 @@ function thirdQuestion() {
         questionDiv3.appendChild(bttn4);
 
     }
-
-    bttn1.addEventListener("click", function () {
-        fourthQuestion()
-        // ++score
-        // h1score.innerHTML = "Score = " + score;
-        // console.log(score)
-    })
-    bttn2.addEventListener("click", function () {
-        fourthQuestion()
-    })
-    bttn3.addEventListener("click", function () {
-        fourthQuestion()
-
-
-    })
-    bttn4.addEventListener("click", function () {
-        fourthQuestion()
-    })
-
 }
 
 function fourthQuestion() {
 
-
     questionDiv3.style.display = "none"
     questionDiv4.style.display = "block"
+    finalDiv.style.display = "none"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = "none"
 
     for (i = 0; i < questions[3].choices.length; i++) {
 
-        // debugger
+
         question4.textContent = questions[3].title;
 
         //get elements inside of the array
@@ -256,47 +219,20 @@ function fourthQuestion() {
         questionDiv4.appendChild(bttn4);
 
 
-
-
     }
-
-    bttn1.addEventListener("click", function () {
-        fifthQuestion()
-    })
-
-
-    bttn2.addEventListener("click", function () {
-        fifthQuestion()
-    })
-
-
-
-    bttn3.addEventListener("click", function () {
-        fifthQuestion()
-    })
-
-
-
-    bttn4.addEventListener("click", function () {
-        // ++score
-        // h1score.innerHTML = "Score = " + score;
-        // console.log(score)
-        fifthQuestion()
-
-    })
-    console.log(score);
-
 }
+
 function fifthQuestion() {
     // when button it's clicked only 5th question shows up 
 
 
     questionDiv4.style.display = "none"
     questionDiv5.style.display = "block"
+    inputFinal.style.display = "none"
+    submitBttn.style.display = "none"
 
     for (i = 0; i < questions[4].choices.length; i++) {
 
-        // debugger
         question5.textContent = questions[4].title;
 
         //get elements inside of the array
@@ -313,26 +249,8 @@ function fifthQuestion() {
         questionDiv5.appendChild(bttn3);
         questionDiv5.appendChild(bttn4);
 
+
     }
-
-    bttn1.addEventListener("click", function () {
-
-        finishQuiz()
-    })
-    bttn2.addEventListener("click", function () {
-        ++score
-        // h1score.innerHTML = "Score = " + score;
-        finishQuiz()
-    })
-    bttn3.addEventListener("click", function () {
-        finishQuiz()
-
-
-    })
-    bttn4.addEventListener("click", function () {
-        finishQuiz()
-    })
-
 
 }
 
@@ -340,25 +258,93 @@ function finishQuiz() {
 
     questionDiv5.style.display = "none"
     finalDiv.style.display = "block"
-    inputFinal.style.visibility = "visible"
-    submitBttn.style.visibility = "visible"
-
-    finalDiv.innerHTML = "Great Job! Your final score is " + score + " Enter your first initials below to save your result."
-    console.log();
+    inputFinal.style.display = "block"
+    submitBttn.style.display = "block"
+    finalDiv.innerHTML = "Great Job! Your final score is " + score + " . \n Enter your first initials below to save your result. "
 
 }
-function submit() {
 
-    // newGame.style.visibility = "visible"
+
+//This  event listener will submit users initials and score to localStorage
+submitBttn.addEventListener("click", function () {
+
+    newGameBttn.style.display = "block"
     inputFinal.style.display = "none"
     submitBttn.style.display = "none"
-
     var playerName = inputFinal.value;
     finalDiv.innerHTML = "Thanks for playing " + playerName + " !"
+    setTimeout(countdown);
+
+    var player = {
+        name: playerName,
+        score: score,
+    };
+
+    localStorage.setItem("user", JSON.stringify(player));
+
+})
+
+
+//Event delegation on my choice buttons 
+
+questionDiv.addEventListener("click", function (evt) {
+
+    if (evt.target.matches("button")) {
+
+        secondQuestion();
+        score = score + 5
+        h1score.innerHTML = score;
+        localStorage.setItem("user", score);
+    }
+    ///if button clicked is the second button
+
+})
+
+questionDiv2.addEventListener("click", function (evt) {
+
+    if (evt.target.matches("button")) {
+
+        thirdQuestion();
+        score = score + 5
+        h1score.innerHTML = score;
+    }
+
+})
+
+questionDiv3.addEventListener("click", function (evt) {
+
+    if (evt.target.matches("button")) {
+
+        fourthQuestion();
+        score = score + 5
+        h1score.innerHTML = score;
+    }
+
+})
+
+questionDiv4.addEventListener("click", function (evt) {
+
+    if (evt.target.matches("button")) {
+
+        fifthQuestion();
+        score = score + 5
+        h1score.innerHTML = score;
+
+    }
+
+})
 
 
 
-}
+questionDiv5.addEventListener("click", function (evt) {
+
+    if (evt.target.matches("button")) {
+
+        finishQuiz();
+
+    }
+
+})
 
 
 
@@ -366,19 +352,7 @@ function submit() {
 
 
 
-//function storing {
 
 
-//     var storePlayerName = localStorage.getItem("players"));
-//     localStorage.setItem("todos", JSON.stringify(players))
-//    
 
 
-//         if (storePlayerName !== null) {
-//             players = storePlayerName;
-
-
-//         }
-
-//     }   }
-// }
