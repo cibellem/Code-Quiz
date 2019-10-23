@@ -16,6 +16,7 @@ I will come back to fix the scores and the timer because the math behind it it's
     *Event delegation*,
     *Loops*.
     *Functions*
+    *Timers
     
 ### Technologies-Libraries
 - [Bootstrap](https://getbootstrap.com/) - CSS Framework
