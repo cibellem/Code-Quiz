@@ -84,11 +84,11 @@ function startQuiz() {
         }
 
         if (questions[i].length === -1) {
-            clearInterval(countdown);
+            clearTimeout(countdown);
             timer.textContent = "Time is out!";
         }
 
-        // I want to creat another if to to stop the time. When there are no more questions to be asked timer stop,
+
     }, 1000);
 
 }
@@ -126,7 +126,8 @@ function firstQuestion() {
         questionDiv.appendChild(bttn3);
         questionDiv.appendChild(bttn4);
 
-
+        console.log(bttn1)
+        console.log(bttn3)
     }
 
 }
@@ -262,7 +263,7 @@ function finishQuiz() {
     finalDiv.style.display = "block"
     inputFinal.style.display = "block"
     submitBttn.style.display = "block"
-    finalDiv.innerHTML = "Great Job! Your final score is " + score + " . \n Enter your first initials below to save your result. "
+    finalDiv.innerHTML = "Great Job! Your final score is " + score + " . \n  Enter your first initials below to save your result."
     clearTimeout(countdown);
 
 }
@@ -290,9 +291,10 @@ submitBttn.addEventListener("click", function () {
 
 //Event delegation on my choice buttons 
 
-questionDiv.addEventListener("click", function (evt) {
+questionDiv.addEventListener("click", function () {
 
-    if (evt.target.matches("button")) {
+    if (this === bttn3) {
+        console.log(this)
 
 
         score = score + 5
@@ -301,7 +303,7 @@ questionDiv.addEventListener("click", function (evt) {
         localStorage.setItem("user", score);
 
 
-    } else if (evt.target.matches("button")) {
+    } else {
 
         secondQuestion();
     }
