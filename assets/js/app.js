@@ -65,12 +65,14 @@ function setUpGAme() {
 
 
 function startQuiz() {
-    // score = 0;
-    // startTime = 60;
+    score = 0;
+    startTime = 60;
     firstQuestion()
     divInitial.style.display = "none"
     finalDiv.style.display = "none"
     inputFinal.style.display = "none"
+
+
 
     countdown = setInterval(function () {
         startTime--;
@@ -261,6 +263,7 @@ function finishQuiz() {
     inputFinal.style.display = "block"
     submitBttn.style.display = "block"
     finalDiv.innerHTML = "Great Job! Your final score is " + score + " . \n Enter your first initials below to save your result. "
+    clearTimeout(countdown);
 
 }
 
@@ -273,8 +276,8 @@ submitBttn.addEventListener("click", function () {
     submitBttn.style.display = "none"
     var playerName = inputFinal.value;
     finalDiv.innerHTML = "Thanks for playing " + playerName + " !"
-    setTimeout(countdown);
 
+    var score
     var player = {
         name: playerName,
         score: score,
@@ -291,10 +294,16 @@ questionDiv.addEventListener("click", function (evt) {
 
     if (evt.target.matches("button")) {
 
-        secondQuestion();
+
         score = score + 5
         h1score.innerHTML = score;
+        secondQuestion();
         localStorage.setItem("user", score);
+
+
+    } else if (evt.target.matches("button")) {
+
+        secondQuestion();
     }
     ///if button clicked is the second button
 
